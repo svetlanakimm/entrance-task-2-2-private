@@ -1,0 +1,19 @@
+.copyright {
+  padding: 5px 0;
+  color: $color-secondary-text;
+  font-size: 12px;
+  text-align: right;
+
+  &__link {
+    color: $color-secondary-text;
+    letter-spacing: 0.01px;
+    text-align: left;
+    text-decoration: none;
+  }
+}
+
+@media #{$tablet-width} {
+  .copyright {
+    padding: 18px 16px;
+  }
+}

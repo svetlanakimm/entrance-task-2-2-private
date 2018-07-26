@@ -1,0 +1,16 @@
+.page-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-top: 13px;
+  padding-bottom: 11px;
+  background-color: $white;
+
+  @media #{$tablet-width} {
+    position: initial;
+    padding-left: 40px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid $light-border;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,16 @@
+.logo {
+  display: block;
+  margin-left: 20px;
+  width: 110px;
+
+  img {
+    max-width: 100%;
+  }
+
+  @media #{$tablet-width} {
+    display: inline-flex;
+    margin-left: 0;
+    margin-right: 31px;
+    vertical-align: middle;
+  }
+}
