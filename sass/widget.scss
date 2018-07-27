@@ -1,0 +1,106 @@
+.widget {
+  margin-top: 10px;
+  padding: 0 20px;
+  color: $color-primary-text;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  &__slider {
+    display: flex;
+    width: max-content;
+  }
+
+  .widget-task {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 200px;
+    height: 120px;
+    margin-right: 15px;
+    padding: 15px;
+    background: #f7f7f7;
+    border-radius: 20px;
+    box-sizing: border-box;
+
+    &__icon {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+
+    &__name {
+      color: $color-primary-text;
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    &__action {
+      font-size: 12px;
+      line-height: 16px;
+      color: $color-secondary-text;
+      letter-spacing: 0.01px;
+    }
+
+    &-min {
+      height: 100px;
+    }
+  }
+
+  &-main {
+    margin: 0;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    .widget__wrapper {
+      padding: 20px;
+      min-height: 282px;
+      background: url("../img/bg@1x.png") no-repeat 50%;
+      background-size: cover;
+      border-radius: 20px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .widget-task {
+      margin-right: 20px;
+    }
+  }
+}
+
+.widget-temperature {
+  margin-top: 15px;
+  margin-bottom: 18px;
+  display: flex;
+
+  &__item {
+    margin-right: 20px;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 12px;
+    line-height: 14px;
+    color: $color-secondary-text;
+  }
+
+  &__digit {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+  }
+}
+
+@media #{$tablet-width} {
+  .widget {
+    &-half {
+      flex-basis: 50%;
+    }
+
+    &-full {
+      flex-basis: 100%;
+    }
+  }
+}

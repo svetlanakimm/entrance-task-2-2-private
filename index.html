@@ -9,7 +9,8 @@
 <body class="page">
 <header class="page-header">
   <a class="logo" href="index.html"><img src="img/yandex_dom.svg"></a>
-  <nav class="main-nav main-nav--opened">
+  <nav class="main-nav main-nav--closed">
+  <!--<nav class="main-nav main-nav&#45;&#45;opened">-->
     <button class="main-nav__toggle" type="button">
       <img src="img/icon_list_m.png">
     </button>
@@ -22,10 +23,96 @@
     </div>
   </nav>
 </header>
-<main>
-  <!--<section class="main"></section>-->
-  <!--<section class="widget"></section>-->
-  <!--<section class="widget"></section>-->
+<main class="page-content">
+  <section class="widget widget-half widget-main">
+    <!--<h2 class="page__subtitle page__subtitle-hidden">Главное</h2>-->
+    <h2 class="page__subtitle">Главное</h2>
+    <div class="widget__wrapper">
+      <div class="widget__header">
+        <h1 class="page__title">Привет, Геннадий!</h1>
+        <p class="page__text">Двери и окна закрыты, сигнализация включена.</p>
+        <div class="widget__temperature widget-temperature">
+          <div class="widget-temperature__item widget-temperature__item-inside">
+            <p class="widget-temperature__text">Дома</p>
+            <span class="widget-temperature__digit">+23</span>
+          </div>
+          <div class="widget-temperature__item widget-temperature__item-outside">
+            <p class="widget-temperature__text">За окном</p>
+            <span class="widget-temperature__digit">+19</span>
+          </div>
+        </div>
+      </div>
+      <div class="widget__slider">
+        <div class="widget__task widget-task">
+          <img class="widget-task__icon" src="img/icon_temperature.svg">
+          <div class="widget-task__name">Philips Cooler</div>
+          <div class="widget-task__action">Начнет охлаждать в 16:30</div>
+        </div>
+        <div class="widget__task widget-task">
+          <img class="widget-task__icon" src="img/icon_sun.svg">
+          <div class="widget-task__name">Xiaomi Yeelight LED Smart Bulb</div>
+          <div class="widget-task__action">Включится в 17:00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="widget widget-half">
+    <div class="widget__header">
+      <h2 class="page__subtitle">Избранные сценарии</h2>
+    </div>
+    <div class="widget__slider">
+      <div class="widget__task widget-task widget-task-min">
+        <img class="widget-task__icon" src="img/icon_sun_active.svg">
+        <div class="widget-task__name">Выключить весь свет в доме и во дворе</div>
+      </div>
+      <div class="widget__task widget-task widget-task-min">
+        <img class="widget-task__icon" src="img/icon_scheduled.svg">
+        <div class="widget-task__name">Я ухожу</div>
+      </div>
+    </div>
+  </section>
+  <section class="widget widget-full">
+    <div class="widget__header">
+      <h2 class="page__subtitle">Избранные устройства</h2>
+    </div>
+    <div class="widget__slider">
+      <div class="widget__task widget-task">
+        <img class="widget-task__icon" src="img/icon_sun_active.svg">
+        <div class="widget-task__name">Xiaomi Yeelight LED Smart Bulb</div>
+        <div class="widget-task__action">Включено</div>
+      </div>
+      <div class="widget__task widget-task">
+        <img class="widget-task__icon" src="img/icon_sun.svg">
+        <div class="widget-task__name">D-Link Omna 180 Cam HD</div>
+        <div class="widget-task__action">Включится в 17:00</div>
+      </div>
+      <div class="widget__task widget-task">
+        <img class="widget-task__icon" src="img/icon_temperature.svg">
+        <div class="widget-task__name">Elgato Eve Degree Connected</div>
+        <div class="widget-task__action">Выключено до 17:00</div>
+      </div>
+      <div class="widget__task widget-task">
+        <img class="widget-task__icon" src="img/icon_sun.svg">
+        <div class="widget-task__name">LIFX Mini Day & Dusk A60 E27</div>
+        <div class="widget-task__action">Включится в 17:00</div>
+      </div>
+      <div class="widget__task widget-task">
+        <img class="widget-task__icon" src="img/icon_sun_active.svg">
+        <div class="widget-task__name">Xiaomi Mi Air Purifier 2S</div>
+        <div class="widget-task__action">Включено</div>
+      </div>
+      <div class="widget__task widget-task">
+        <img class="widget-task__icon" src="img/icon_sun.svg">
+        <div class="widget-task__name">Philips Zhirui</div>
+        <div class="widget-task__action">Выключено</div>
+      </div>
+      <div class="widget__task widget-task">
+        <img class="widget-task__icon" src="img/icon_sun_active.svg">
+        <div class="widget-task__name">Xiaomi Mi Air Purifier 2S</div>
+        <div class="widget-task__action">Включено</div>
+      </div>
+    </div>
+  </section>
 </main>
 <footer class="page-footer">
   <ul class="page-footer__list">

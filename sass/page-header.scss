@@ -5,6 +5,7 @@
   padding-top: 13px;
   padding-bottom: 11px;
   background-color: $white;
+  z-index: 1;
 
   @media #{$tablet-width} {
     position: initial;

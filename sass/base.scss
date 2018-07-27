@@ -1,17 +1,42 @@
-.page{
+.page {
   min-width: 320px;
   margin: 0 auto;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
+  color: $color-primary-text;
   //background-color: $white;
-}
 
-body {
-  background: #c6c6c6;
+  &__title,
+  &__subtitle {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 18px;
+    line-height: 20px;
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  &__subtitle {
+    margin: 20px 0;
+  }
+
+  &__text {
+    margin: 5px 0;
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
 
 main {
   position: relative;
   top: 65px;
   height: calc(100vh - 160px);
+
+  @media #{$tablet-width} {
+    top: initial;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
