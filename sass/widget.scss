@@ -10,42 +10,10 @@
     width: max-content;
   }
 
-  .widget-task {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 200px;
-    height: 120px;
-    margin-right: 15px;
-    padding: 15px;
-    background: #f7f7f7;
-    border-radius: 20px;
-    box-sizing: border-box;
-
-    &__icon {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-    }
-
-    &__name {
-      color: $color-primary-text;
-      font-size: 14px;
-      line-height: 16px;
-      font-weight: 700;
-      letter-spacing: 0;
-    }
-
-    &__action {
-      font-size: 12px;
-      line-height: 16px;
-      color: $color-secondary-text;
-      letter-spacing: 0.01px;
-    }
-
-    &-min {
-      height: 100px;
+  &__header {
+    &-flexed {
+      display: flex;
+      align-items: baseline;
     }
   }
 
@@ -63,44 +31,38 @@
       overflow: hidden;
       box-sizing: border-box;
     }
-
-    .widget-task {
-      margin-right: 20px;
-    }
-  }
-}
-
-.widget-temperature {
-  margin-top: 15px;
-  margin-bottom: 18px;
-  display: flex;
-
-  &__item {
-    margin-right: 20px;
-  }
-
-  &__text {
-    margin: 0;
-    font-size: 12px;
-    line-height: 14px;
-    color: $color-secondary-text;
-  }
-
-  &__digit {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 35px;
   }
 }
 
 @media #{$tablet-width} {
   .widget {
+    margin-top: 0;
+    padding: 0 40px;
+
     &-half {
       flex-basis: 50%;
+
+      &:nth-child(2n - 1) {
+        padding-left: 40px;
+        padding-right: 13px;
+      }
+
+      &:nth-child(2n) {
+        padding-left: 13px;
+        padding-right: 40px;
+      }
     }
 
     &-full {
       flex-basis: 100%;
+      margin-top: 5px;
+    }
+
+    &-main {
+      .widget__wrapper {
+        padding: 26px 20px 0 25px;
+        min-height: 331px;
+      }
     }
   }
 }

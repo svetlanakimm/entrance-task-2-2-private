@@ -39,6 +39,7 @@
           <div class="widget-temperature__item widget-temperature__item-outside">
             <p class="widget-temperature__text">За окном</p>
             <span class="widget-temperature__digit">+19</span>
+            <img class="widget-temperature__icon" src="img/cloud-drizzle.svg">
           </div>
         </div>
       </div>
@@ -69,11 +70,33 @@
         <img class="widget-task__icon" src="img/icon_scheduled.svg">
         <div class="widget-task__name">Я ухожу</div>
       </div>
+      <div class="widget__task widget-task widget-task-min">
+        <img class="widget-task__icon" src="img/icon_sun_active.svg">
+        <div class="widget-task__name">Включить свет <br>в коридоре</div>
+      </div>
+      <div class="widget__task widget-task widget-task-min">
+        <img class="widget-task__icon" src="img/icon_temperature_active.svg">
+        <div class="widget-task__name">Набрать горячую ванну</div>
+        <div class="widget-task__action">Начнётся в 18:00</div>
+      </div>
+      <div class="widget__task widget-task widget-task-min">
+        <img class="widget-task__icon" src="img/icon_temperature_active.svg">
+        <div class="widget-task__name">Сделать пол тёплым во всей квартире</div>
+      </div>
     </div>
   </section>
   <section class="widget widget-full">
-    <div class="widget__header">
+    <div class="widget__header widget__header-flexed">
       <h2 class="page__subtitle">Избранные устройства</h2>
+      <div class="filter">
+        <ul class="filter__list">
+          <li class="filter__item filter__item-active"><a class="filter__link" href="#">Все</a></li>
+          <li class="filter__item"><a class="filter__link" href="#">Кухня</a></li>
+          <li class="filter__item"><a class="filter__link" href="#">Зал</a></li>
+          <li class="filter__item"><a class="filter__link" href="#">Лампочки</a></li>
+          <li class="filter__item"><a class="filter__link" href="#">Камеры</a></li>
+        </ul>
+      </div>
     </div>
     <div class="widget__slider">
       <div class="widget__task widget-task">

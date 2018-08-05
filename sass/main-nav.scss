@@ -1,11 +1,11 @@
 .main-nav {
 
-  &__wrapper{
+  &__wrapper {
     position: relative;
     margin: 0 auto;
   }
 
-  &__toggle{
+  &__toggle {
     position: absolute;
     top: 24px;
     right: 20px;
@@ -16,7 +16,7 @@
     outline: none;
   }
 
-  &__list{
+  &__list {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -26,7 +26,7 @@
     font-weight: 700;
   }
 
-  &__item{
+  &__item {
     margin: 0;
     padding: 25px 0;
     box-sizing: border-box;
@@ -39,7 +39,7 @@
     }
   }
 
-  &__link{
+  &__link {
     color: $color-primary-text;
     text-decoration: none;
   }
@@ -58,22 +58,22 @@
 }
 
 @media #{$tablet-width} {
-  .main-nav{
+  .main-nav {
     display: inline-flex;
     vertical-align: middle;
     z-index: 2;
 
-    &__toggle{
+    &__toggle {
       display: none;
     }
 
-    &__list{
+    &__list {
       flex-direction: row;
       align-content: space-between;
       margin-top: 0;
     }
 
-    &__item{
+    &__item {
       padding: 24px 14px;
       line-height: 21px;
       border: 0;

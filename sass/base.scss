@@ -29,14 +29,34 @@
   }
 }
 
+@media #{$tablet-width} {
+  .page {
+    &__title {
+      font-size: 27px;
+      line-height: 30px;
+    }
+
+    &__subtitle {
+      margin-top: 29px;
+    }
+
+    &__text {
+      margin: 7px 0;
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}
+
 main {
   position: relative;
   top: 65px;
-  height: calc(100vh - 160px);
+  height: initial;
 
   @media #{$tablet-width} {
     top: initial;
     display: flex;
     flex-wrap: wrap;
+    height: calc(100vh - 160px);
   }
 }
