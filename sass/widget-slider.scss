@@ -1,0 +1,45 @@
+.widget-slider {
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+
+  &::-webkit-scrollbar {
+    width: 0 !important
+  }
+
+  &__list {
+    display: flex;
+    width: max-content;
+    padding-left: 20px;
+  }
+}
+
+@media #{$tablet-width} {
+  .widget-slider {
+    width: initial;
+    margin-left: 0;
+    overflow-x: initial;
+
+    &-vertical {
+      overflow-y: scroll;
+
+      .widget-task {
+        margin-right: 0;
+      }
+    }
+
+    &-3n {
+      .widget-task:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+
+    &__list {
+      width: initial;
+      flex-wrap: wrap;
+      padding-left: 0;
+    }
+  }
+}

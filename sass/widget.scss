@@ -2,19 +2,17 @@
   margin-top: 10px;
   padding: 0 20px;
   color: $color-primary-text;
-  overflow: hidden;
   box-sizing: border-box;
-
-  &__slider {
-    display: flex;
-    width: max-content;
-  }
 
   &__header {
     &-flexed {
       display: flex;
       align-items: baseline;
     }
+  }
+
+  &__arrow {
+    display: none;
   }
 
   &-main {
@@ -31,6 +29,10 @@
       overflow: hidden;
       box-sizing: border-box;
     }
+
+    .widget-task {
+      margin-right: 20px;
+    }
   }
 }
 
@@ -38,6 +40,14 @@
   .widget {
     margin-top: 0;
     padding: 0 40px;
+
+    &__arrow {
+      display: block;
+      position: absolute;
+      bottom: 9px;
+      right: 18%;
+      margin-left: -6px;
+    }
 
     &-half {
       flex-basis: 50%;
@@ -60,8 +70,29 @@
 
     &-main {
       .widget__wrapper {
-        padding: 26px 20px 0 25px;
-        min-height: 331px;
+        position: relative;
+        display: flex;
+        padding: 20px 20px 0 25px;
+        height: 331px;
+      }
+
+      .widget__header {
+        flex-basis: 66%;
+      }
+
+      .widget-slider {
+        flex-basis: 34%;
+      }
+
+      .widget-slider__list {
+        flex-direction: column;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        overflow: -moz-scrollbars-none;
+
+        &::-webkit-scrollbar {
+          width: 0 !important
+        }
       }
     }
   }

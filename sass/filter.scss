@@ -39,7 +39,7 @@
 
     &__item {
       margin: 0 5px;
-      padding: 6px 11px 7px 15px;
+      padding: 7px 11px 7px 15px;
       background-color: $light-background;
       cursor: pointer;
 
@@ -50,8 +50,12 @@
       }
 
       &:first-child {
-        margin-left: 13px;
+        margin-left: 0;
       }
+    }
+
+    &-mleft {
+      margin-left: 13px;
     }
   }
 }

@@ -13,7 +13,7 @@
     font-size: 18px;
     line-height: 20px;
 
-    &-hidden {
+    &-mobhidden {
       display: none;
     }
   }
@@ -33,15 +33,19 @@
   .page {
     &__title {
       font-size: 27px;
-      line-height: 30px;
+      line-height: 38px;
     }
 
     &__subtitle {
       margin-top: 29px;
+
+      &-mobhidden {
+        display: block;
+      }
     }
 
     &__text {
-      margin: 7px 0;
+      margin: 5px 0;
       font-size: 14px;
       line-height: 16px;
     }
