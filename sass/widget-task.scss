@@ -3,10 +3,9 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: 200px;
+  flex-basis: 200px;
   height: 120px;
   margin-right: 15px;
-  margin-bottom: 15px;
   padding: 15px;
   background: $light-background;
   border-radius: 20px;
@@ -42,6 +41,9 @@
 }
 
 .widget__task {
+  flex-basis: 31.7%;
+  min-width: 200px;
+
   &-min {
     height: 100px;
   }
@@ -65,3 +67,8 @@
   }
 }
 
+@media #{$tablet-width} {
+  .widget-task {
+    margin-bottom: 15px;
+  }
+}

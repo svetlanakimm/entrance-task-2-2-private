@@ -34,6 +34,20 @@
       .widget-task:nth-child(3n) {
         margin-right: 0;
       }
+
+      .widget-task:nth-child(n + 10) {
+        display: none;
+      }
+    }
+
+    &-horizontal {
+      .widget-task {
+        flex-basis: 200px;
+      }
+
+      .widget-slider__list {
+        width: max-content;
+      }
     }
 
     &__list {

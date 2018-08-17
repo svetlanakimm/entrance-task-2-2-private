@@ -34,6 +34,15 @@
     font-weight: 700;
   }
 
+  &__link {
+    display: block;
+    height: 100%;
+    padding: 25px 0;
+    color: $color-primary-text;
+    text-decoration: none;
+    opacity: .6;
+  }
+
   &__item {
     margin: 0;
     box-sizing: border-box;
@@ -44,14 +53,13 @@
     &:first-child {
       border-top: 1px solid $light-border;
     }
-  }
 
-  &__link {
-    display: block;
-    height: 100%;
-    padding: 25px 0;
-    color: $color-primary-text;
-    text-decoration: none;
+    &-active,
+    &:hover {
+      .main-nav__link {
+        opacity: 1.0;
+      }
+    }
   }
 }
 

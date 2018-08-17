@@ -15,7 +15,7 @@
     </button>
     <div class="main-nav__wrapper">
       <ul class="main-nav__list">
-        <li class="main-nav__item"><a class="main-nav__link" href="#">Сводка</a></li>
+        <li class="main-nav__item main-nav__item-active"><a class="main-nav__link" href="#">Сводка</a></li>
         <li class="main-nav__item"><a class="main-nav__link" href="#">Устройства</a></li>
         <li class="main-nav__item"><a class="main-nav__link" href="#">Сценарии</a></li>
       </ul>
@@ -77,6 +77,10 @@
   <section class="widget widget-half">
     <div class="widget__header">
       <h2 class="page__subtitle">Избранные сценарии</h2>
+      <div class="widget__pagination">
+        <a href="#" class="widget__btn widget__btn-prev"></a>
+        <a href="#" class="widget__btn widget__btn-next"></a>
+      </div>
     </div>
     <div class="widget__slider widget-slider widget-slider-3n">
       <div class="widget-slider__list">
@@ -112,7 +116,7 @@
     <div class="widget__header widget__header-flexed">
       <h2 class="page__subtitle">Избранные устройства</h2>
       <div class="filter filter-mleft">
-        <ul class="filter__list">
+        <ul class="filter__list filter__list-closed">
           <li class="filter__item filter__item-active"><a class="filter__link" href="#">Все</a></li>
           <li class="filter__item"><a class="filter__link" href="#">Кухня</a></li>
           <li class="filter__item"><a class="filter__link" href="#">Зал</a></li>
@@ -120,8 +124,12 @@
           <li class="filter__item"><a class="filter__link" href="#">Камеры</a></li>
         </ul>
       </div>
+      <div class="widget__pagination">
+        <a href="#" class="widget__btn widget__btn-prev"></a>
+        <a href="#" class="widget__btn widget__btn-next"></a>
+      </div>
     </div>
-    <div class="widget__slider widget-slider">
+    <div class="widget__slider widget-slider widget-slider-horizontal">
       <div class="widget-slider__list">
         <div class="widget__task widget-task widget__task-device widget__task-active" data-type="light">
           <img class="widget-task__icon widget-task__icon-active" src="img/icon_sun_active.svg">

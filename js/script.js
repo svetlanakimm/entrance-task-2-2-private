@@ -51,4 +51,55 @@ function hideArrow() {
   }
 }
 
-sliderVertical.addEventListener('scroll', hideArrow);
+if (window.screen.width >= 1024 && window.screen.height >= 768) {
+  sliderVertical.addEventListener('scroll', hideArrow);
+}
+
+// фильтр
+let filterActive = document.querySelector('.page-content .filter__item-active');
+console.log(filterActive);
+let filterList = document.querySelectorAll('.page-content .filter__item');
+
+
+function chooseFilter(e) {
+  const filter = e.target.closest('.filter__list');
+  const closed = filter.classList.contains('filter__list-closed');
+  const items = filter.querySelectorAll('.filter__item');
+  if (closed) {
+    // show options
+    filter.classList.remove('filter__list-closed');
+    filter.classList.add('filter__list-opened');
+  }
+  else {
+    for (let i = 0; i < items.length; i++) {
+      items[i].style.order = 0;
+      items[i].classList.remove('filter__item-active');
+    }
+    const item = e.target.closest('.filter__item');
+    item.style.order = -1;
+    item.classList.add('filter__item-active');
+
+    // close options
+    filter.classList.remove('filter__list-opened');
+    filter.classList.add('filter__list-closed');
+  }
+}
+
+
+if (window.screen.width <= 1024) {
+  let filterLists = document.querySelectorAll('.filter__list');
+  for (let i = 0; i < filterLists.length; i++){
+    let filterList = filterLists[i];
+    filterList.addEventListener('touchend', chooseFilter)
+  }
+}
+
+//сценарии по 3
+let widget3n = document.querySelector('.widget-slider-3n');
+let widgetTasks = widget3n.querySelectorAll('.widget-task');
+
+if (widgetTasks.length > 9) {
+  widget3n.parentNode.querySelector('.widget__pagination').style.display = 'flex';
+}
+
+
