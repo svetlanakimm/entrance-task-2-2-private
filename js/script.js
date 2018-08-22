@@ -56,12 +56,8 @@ if (window.screen.width >= 1024 && window.screen.height >= 768) {
 }
 
 // фильтр
-let filterActive = document.querySelector('.page-content .filter__item-active');
-console.log(filterActive);
-let filterList = document.querySelectorAll('.page-content .filter__item');
-
-
 function chooseFilter(e) {
+  e.preventDefault();
   const filter = e.target.closest('.filter__list');
   const closed = filter.classList.contains('filter__list-closed');
   const items = filter.querySelectorAll('.filter__item');
@@ -85,21 +81,221 @@ function chooseFilter(e) {
   }
 }
 
-
 if (window.screen.width <= 1024) {
   let filterLists = document.querySelectorAll('.filter__list');
-  for (let i = 0; i < filterLists.length; i++){
+  for (let i = 0; i < filterLists.length; i++) {
     let filterList = filterLists[i];
-    filterList.addEventListener('touchend', chooseFilter)
+    filterList.addEventListener('touchend', chooseFilter);
   }
 }
 
-//сценарии по 3
-let widget3n = document.querySelector('.widget-slider-3n');
-let widgetTasks = widget3n.querySelectorAll('.widget-task');
+let newSelection = '';
+let widgetFull = document.querySelector('.widget-full');
+let filterList = widgetFull.querySelector('.filter__list');
+let filterListLinks = filterList.querySelectorAll('a');
 
-if (widgetTasks.length > 9) {
-  widget3n.parentNode.querySelector('.widget__pagination').style.display = 'flex';
+function filter(e) {
+  for (let i = 0; i < filterListLinks.length; i++) {
+    filterListLinks[i].closest('.filter__item').classList.remove('filter__item-active');
+  }
+  e.target.closest('.filter__item').classList.add('filter__item-active');
+  newSelection = e.target.rel;
+
+  let widgetTasksNot = widgetFull.querySelectorAll('.widget-task:not(.' + newSelection + ')');
+  let widgetTasks = widgetFull.querySelectorAll('.widget-task.' + newSelection);
+  widgetTasksNot.forEach(function (element) {
+    element.style.display = 'none';
+  });
+
+  widgetTasks.forEach(function (element) {
+    element.style.display = 'flex';
+  })
 }
 
+filterListLinks.forEach(function (element) {
+  element.addEventListener('touchend', filter);
+});
 
+//сценарии по 3
+let widget3n = document.querySelector('.widget-slider-3n');
+let widgetTasks3n = widget3n.querySelectorAll('.widget-task');
+const widgetTasks3nLength = widgetTasks3n.length;
+
+if (widgetTasks3nLength > 9) {
+  for (let i = 0; i < 9; i++) {
+    widgetTasks3n[i].classList.add('widget__task-showed');
+  }
+
+  for (let i = 9; i < widgetTasks3nLength; i++) {
+    widgetTasks3n[i].classList.add('widget__task-hided');
+  }
+}
+
+let pageNumberScripts = 1;
+
+function openPrev(e, n) {
+  e.preventDefault();
+  if (pageNumberScripts <= 1) {
+    return false;
+  }
+  pageNumberScripts--;
+
+  if (pageNumberScripts <= widgetTasks3nLength / n) {
+    e.target.parentNode.querySelector('.widget__btn-next').classList.add('widget__btn-active');
+  } else {
+    e.target.parentNode.querySelector('.widget__btn-next').classList.remove('widget__btn-active');
+  }
+
+  if (pageNumberScripts === 1) {
+    e.target.classList.remove('widget__btn-active');
+  }
+
+  if (pageNumberScripts >= 1) {
+    let openedTasks = widget3n.querySelectorAll('.widget__task-showed');
+    for (let i = 0; i < openedTasks.length; i++) {
+      openedTasks[i].classList.remove('widget__task-showed');
+      openedTasks[i].classList.add('widget__task-hided');
+    }
+
+    for (let i = (pageNumberScripts - 1) * n; i < pageNumberScripts * n; i++) {
+      widgetTasks3n[i].classList.remove('widget__task-hided');
+      widgetTasks3n[i].classList.add('widget__task-showed');
+    }
+  }
+}
+
+function openNext(e, n) {
+  e.preventDefault();
+  let currentCount = 0;
+  if (pageNumberScripts > widgetTasks3nLength / n) {
+    return false;
+  }
+  pageNumberScripts++;
+
+  if (pageNumberScripts > 1) {
+    e.target.parentNode.querySelector('.widget__btn-prev').classList.add('widget__btn-active');
+  } else {
+    e.target.parentNode.querySelector('.widget__btn-prev').classList.remove('widget__btn-active');
+  }
+
+  if (widgetTasks3nLength > n * pageNumberScripts) {
+    currentCount = n * pageNumberScripts;
+  } else {
+    currentCount = widgetTasks3nLength;
+    e.target.classList.remove('widget__btn-active');
+  }
+
+  let openedTasks = widget3n.querySelectorAll('.widget__task-showed');
+  for (let i = 0; i < openedTasks.length; i++) {
+    openedTasks[i].classList.remove('widget__task-showed');
+    openedTasks[i].classList.add('widget__task-hided');
+  }
+
+  for (let i = (pageNumberScripts - 1) * n; i < currentCount; i++) {
+    widgetTasks3n[i].classList.remove('widget__task-hided');
+    widgetTasks3n[i].classList.add('widget__task-showed');
+  }
+}
+
+if (window.screen.width >= 1024 && window.screen.height >= 768) {
+  let btnNext3n =  widget3n.parentNode.querySelector('.widget__btn-next');
+  let btnPrev3n = widget3n.parentNode.querySelector('.widget__btn-prev');
+
+  btnNext3n.addEventListener('touchend', function(e) {
+    openNext(e, 9);
+  });
+
+  if (widgetTasks3nLength > 9) {
+    widget3n.parentNode.querySelector('.widget__pagination').style.display = 'flex';
+    btnNext3n.classList.add('widget__btn-active');
+  }
+
+  btnPrev3n.addEventListener('touchend', function(e) {
+    openPrev(e, 9);
+  });
+
+  if (widgetTasks3nLength > 9) {
+    widget3n.parentNode.querySelector('.widget__pagination').style.display = 'flex';
+  }
+}
+
+//блок Избранные устройства пагинация
+if (window.screen.width >= 1024 && window.screen.height >= 768) {
+  let pageNumberDevices = 1;
+  const deviceWidth = window.innerWidth;
+  let widgetHorizontal = document.querySelector('.widget-slider-horizontal');
+  let widgetTasksHorizontal = widgetHorizontal.querySelectorAll('.widget-task');
+  const widgetTasksHorizontalLength = widgetTasksHorizontal.length;
+  let btnNextHorizontal =  widgetHorizontal.parentNode.querySelector('.widget__btn-next');
+  let btnPrevHorizontal = widgetHorizontal.parentNode.querySelector('.widget__btn-prev');
+  const n = (deviceWidth - 40) / 215;
+  const intN = Math.round((deviceWidth - 40) / 215);
+
+  btnNextHorizontal.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    let currentCount = 0;
+    if (pageNumberDevices > widgetTasksHorizontalLength / intN) {
+      return false;
+    }
+    pageNumberDevices++;
+
+    if (pageNumberDevices > 1) {
+      btnPrevHorizontal.classList.add('widget__btn-active');
+    }
+
+    if (widgetTasksHorizontalLength > intN * pageNumberDevices) {
+      currentCount = intN * pageNumberDevices;
+    } else {
+      currentCount = widgetTasksHorizontalLength;
+      e.target.classList.remove('widget__btn-active');
+    }
+
+    let openedTasks = widgetHorizontal.querySelectorAll('.widget__task-showed');
+    for (let i = 0; i < openedTasks.length; i++) {
+      openedTasks[i].classList.remove('widget__task-showed');
+      openedTasks[i].classList.add('widget__task-hided');
+    }
+
+    for (let i = (pageNumberDevices - 1) * intN; i < currentCount; i++) {
+      widgetTasksHorizontal[i].classList.remove('widget__task-hided');
+      widgetTasksHorizontal[i].classList.add('widget__task-showed');
+    }
+
+  });
+
+  btnPrevHorizontal.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    if (pageNumberDevices <= 1) {
+      return false;
+    }
+    pageNumberDevices--;
+
+    if (pageNumberDevices === 1) {
+      e.target.classList.remove('widget__btn-active');
+      btnNextHorizontal.classList.add('widget__btn-active');
+    }
+
+    if (pageNumberDevices >= 1) {
+      let openedTasks = widgetHorizontal.querySelectorAll('.widget__task-showed');
+      for (let i = 0; i < openedTasks.length; i++) {
+        openedTasks[i].classList.remove('widget__task-showed');
+        openedTasks[i].classList.add('widget__task-hided');
+      }
+
+      for (let i = (pageNumberDevices - 1) * intN; i < pageNumberDevices * intN; i++) {
+        widgetTasksHorizontal[i].classList.remove('widget__task-hided');
+        widgetTasksHorizontal[i].classList.add('widget__task-showed');
+      }
+    }
+
+  });
+
+  if (widgetTasksHorizontalLength > intN) {
+    for (let i = 0; i < intN; i++) {
+      widgetTasksHorizontal[i].classList.add('widget__task-showed');
+    }
+
+    widgetHorizontal.parentNode.querySelector('.widget__pagination').style.display = 'flex';
+    btnNextHorizontal.classList.add('widget__btn-active');
+  }
+}

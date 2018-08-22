@@ -14,6 +14,10 @@
     width: max-content;
     padding-left: 20px;
   }
+
+  &-horizontal {
+    min-height: 120px;
+  }
 }
 
 @media #{$tablet-width} {
@@ -31,16 +35,22 @@
     }
 
     &-3n {
-      .widget-task:nth-child(3n) {
-        margin-right: 0;
-      }
+      .widget-task {
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
 
-      .widget-task:nth-child(n + 10) {
-        display: none;
+        &:nth-child(9n),
+        &:nth-child(9n - 1),
+        &:nth-child(9n - 2) {
+          margin-bottom: 0;
+        }
       }
     }
 
     &-horizontal {
+      min-height: 135px;
+
       .widget-task {
         flex-basis: 200px;
       }

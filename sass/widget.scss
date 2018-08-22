@@ -81,6 +81,7 @@
       display: block;
       width: 50%;
       height: 100%;
+      opacity: .3;
 
       &-prev {
         background: url("../img/icon_arrow.svg") no-repeat 9px 50%;
@@ -89,6 +90,10 @@
       &-next {
         background: url("../img/icon_arrow.svg") no-repeat 9px 50%;
         transform: rotate(180deg);
+      }
+
+      &-active {
+        opacity: 1.0;
       }
     }
 
@@ -109,7 +114,12 @@
     &-full {
       flex-basis: 100%;
       margin-top: 15px;
+      padding-right: 0;
       overflow: hidden;
+
+      .widget__pagination {
+        top: 18px;
+      }
     }
 
     &-main {

@@ -3,6 +3,7 @@
   &__wrapper {
     position: relative;
     margin: 0 auto;
+    transition: all .3s ease-out;
   }
 
   &__toggle {

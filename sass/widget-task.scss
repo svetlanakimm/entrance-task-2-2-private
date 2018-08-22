@@ -68,7 +68,15 @@
 }
 
 @media #{$tablet-width} {
-  .widget-task {
+  .widget__task {
     margin-bottom: 15px;
+
+    &-hided {
+      display: none;
+    }
+
+    &-showed {
+      display: flex;
+    }
   }
 }
