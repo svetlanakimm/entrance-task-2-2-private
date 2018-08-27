@@ -1,0 +1,121 @@
+.thermostat {
+  position: relative;
+
+  &__wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 221px;
+    height: 221px;
+    cursor: pointer;
+    background-color: white;
+    z-index: 0;
+  }
+
+  &__bg {
+    height: 100%;
+    position: absolute;
+    width: 50%;
+    left: 0;
+    top: 0;
+
+    &-yellow {
+      background: url('../img/thermostat_yellow.svg') no-repeat 0;
+    }
+
+    &-black {
+      left: initial;
+      right: 0;
+      background: url('../img/thermostat_black.svg') no-repeat 100%;
+    }
+
+    &-yellowcopy {
+      display: none;
+      background: url('../img/thermostat_yellow.svg') no-repeat 0 white;
+      height: 100%;
+      position: absolute;
+      width: 50%;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    &-blackcopy {
+      display: none;
+      background: url('../img/thermostat_black.svg') no-repeat 100% white;
+      height: 100%;
+      position: absolute;
+      width: 50%;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+  }
+
+  &__triangle {
+    position: absolute;
+    top: 23px;
+    left: 107px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 10px 5px;
+    border-color: transparent transparent #000000 transparent;
+    transition: 0.3s all ease-out;
+    z-index: 1;
+
+    &.active {
+      position: absolute;
+      top: 23px;
+      left: 97px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 15px 20px 15px;
+      border-color: transparent transparent #000000 transparent;
+    }
+  }
+
+
+
+  &__block {
+    position: absolute;
+    top: 187px;
+    right: 50%;
+    margin-right: -55px;
+    z-index: 3;
+    border-bottom: 34px solid white;
+    border-left: 17px solid transparent;
+    border-right: 17px solid transparent;
+    height: 0;
+    width: 76px;
+  }
+
+  &__temperature {
+    position: absolute;
+    top: 76px;
+    right: 50%;
+    margin-right: -50px;
+    background: #ffffff;
+    z-index: 3;
+    font-size: 66px;
+    font-weight: 700;
+
+    &::before {
+      content: '+';
+      position: absolute;
+      left: -40px;
+      font-size: 66px;
+      font-weight: 700;
+    }
+  }
+}
+
+#thermostat {
+  position: relative;
+  margin: 0 auto;
+  width: 221px;
+  height: 221px;
+  cursor: pointer;
+  background-color: white;
+  z-index: 0;
+}

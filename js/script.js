@@ -9,12 +9,93 @@ function toggleMenu(e) {
 
 toggleBtn.addEventListener('touchstart', toggleMenu);
 
+// крутилка
+function thermostatPopup() {
+  var wrap = document.querySelector('#thermostat');
+  var triangle = document.querySelector('.thermostat__triangle');
+  var temperature = document.querySelector('.thermostat__temperature');
+
+  var coords = wrap.getBoundingClientRect();
+  var coordsLeft = coords.left;
+  var coordsTop = coords.top;
+  var coordsWidth = coords.width;
+  var coordsHeight = coords.height;
+
+  var coordsXCenter = coordsLeft + coordsWidth / 2;
+  var coordsYCenter = coordsTop + coordsHeight / 2;
+
+  function setTemperature(angle) {
+    var currT = 18;
+    var deltaT = 360 / 16;
+    for (var i = 0; i < 16; i++) {
+      if (angle < 180) {
+        if ((angle > i * deltaT) && (angle < (i + 1) * deltaT)) {
+          temperature.innerHTML = currT + i + 1;
+        }
+      } else {
+        currT = 10;
+        if ((angle > i * deltaT) && (angle < (i + 1) * deltaT)) {
+          temperature.innerHTML = currT + i - 8;
+        }
+      }
+    }
+  }
+
+  function swipeTriangleStart(e) {
+    triangle.classList.add('active');
+  }
+
+  function swipeTriangleMove(e) {
+    var clientX = e.touches[0].clientX;
+    var clientY = e.touches[0].clientY;
+
+    var triangleWidth = clientX - coordsXCenter;
+    var triangleHeight = clientY - coordsYCenter;
+    var hypotenuze = Math.hypot(triangleWidth, triangleHeight);
+
+    var radius = coordsXCenter - coordsLeft;
+    var hNew = (radius * triangleHeight) / hypotenuze;
+
+    var angle = 180 - Math.round(Math.acos(hNew / radius) * (180 / Math.PI));
+    if ((triangleWidth < 0)) {
+      angle = 360 - angle;
+    }
+    console.log(angle);
+    wrap.style.transform = 'rotate(' + angle + 'deg)';
+    setTemperature(angle);
+
+    if ((angle < 180) && (angle > 15)) {
+      document.querySelector('.thermostat__bg-blackcopy').style.display = 'none';
+      document.querySelector('.thermostat__bg-yellowcopy').style.display = 'block';
+    }
+    if ((angle > 180) && (angle < 345)) {
+      document.querySelector('.thermostat__bg-yellowcopy').style.display = 'none';
+      document.querySelector('.thermostat__bg-blackcopy').style.display = 'block';
+    }
+    if ((angle > 345) || (angle < 15)) {
+      document.querySelector('.thermostat__bg-blackcopy').style.display = 'none';
+      document.querySelector('.thermostat__bg-yellowcopy').style.display = 'none';
+    }
+  }
+
+  function swipeTriangleEnd(e) {
+    triangle.classList.remove('active');
+  }
+
+  triangle.addEventListener('touchstart', swipeTriangleStart);
+  triangle.addEventListener('touchmove', swipeTriangleMove);
+  triangle.addEventListener('touchend', swipeTriangleEnd);
+}
+thermostatPopup.init = false;
+
 // обработка клика на блок устройства
 let devices = document.querySelectorAll('.widget__task-device');
 let btnClose = document.querySelectorAll('.button-close');
+let btnSubmit = document.querySelectorAll('.button-submit');
 let popups = document.querySelectorAll('.popup');
 
 function openPopup(e) {
+  console.log('openPopup');
   let deviceName = e.target.closest('.widget__task-device').querySelector('.widget-task__name').textContent;
   let deviceAction = e.target.closest('.widget__task-device').querySelector('.widget-task__action').textContent;
   let type = e.target.closest('.widget__task-device').dataset.type;
@@ -23,9 +104,16 @@ function openPopup(e) {
   popup.querySelector('.page__title').textContent = deviceName;
   popup.querySelector('.popup__subtitle').textContent = deviceAction;
   popup.style.display = 'block';
+
+  if (!thermostatPopup.init) {
+    thermostatPopup();
+    thermostatPopup.init = true;
+  }
 }
 
 function closePopup() {
+  console.log('closePopup');
+
   for (let i = 0; i < popups.length; i++) {
     popups[i].style.display = 'none';
   }
@@ -38,6 +126,12 @@ for (let i = 0; i < devices.length; i++) {
 for (let i = 0; i < btnClose.length; i++) {
   btnClose[i].addEventListener('touchend', closePopup);
 }
+
+for (let i = 0; i < btnSubmit.length; i++) {
+  btnSubmit[i].addEventListener('touchend', closePopup);
+}
+
+
 
 // скрытие стрелки при скролле
 let sliderVertical = document.querySelector('.widget-slider-vertical');
@@ -299,3 +393,4 @@ if (window.screen.width >= 1024 && window.screen.height >= 768) {
     btnNextHorizontal.classList.add('widget__btn-active');
   }
 }
+

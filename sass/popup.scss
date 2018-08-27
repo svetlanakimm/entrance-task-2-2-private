@@ -4,19 +4,18 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background-color: rgba(51,51,51,0.50);
+  height: 130%;
+  background-color: rgba($color-primary-text, .5);
+  z-index: 1;
 
   &__wrapper {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    width: 630px;
+    margin: 20px auto;
+    width: calc(100% - 40px);
     padding: 25px;
-    margin-left: -315px;
     background-color: $white;
     border-radius: 20px;
     box-sizing: border-box;
+    overflow: hidden;
   }
 
   &__subtitle {
@@ -28,28 +27,107 @@
   }
 
   &__digit {
-    position: absolute;
-    top: 25px;
-    right: 70px;
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 43px;
+    display: none;
   }
 
   &__icon {
-    position: absolute;
-    top: 23px;
-    right: 23px;
-    width: 44px;
+    display: none;
   }
 
   &__buttons {
-    position: absolute;
-    top: calc(40% + 258px);
-    left: 50%;
-    display: flex;
-    justify-content: space-between;
-    width: 630px;
-    margin-left: -315px;
+    width: calc(100% - 40px);
+    margin: 15px auto;
+  }
+
+  .filter {
+    position: initial;
+
+    &__list {
+      flex-direction: row;
+      font-size: 13px;
+      width: max-content;
+
+      &-closed {
+        .filter__item:not(.filter__item-active) {
+          display: flex;
+        }
+      }
+    }
+
+    &__item {
+      display: block;
+      margin: 0 5px;
+      padding: 7px 13px 7px 15px;
+      min-width: 50px;
+      background-color: $light-background;
+      text-align: center;
+      cursor: pointer;
+
+      &-active,
+      &:hover {
+        background-color: $color-active;
+        transition: background-color .3s ease-out;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media #{$tablet-width} {
+  .popup {
+    height: 100vh;
+
+    &__wrapper {
+      position: absolute;
+      top: 22%;
+      left: 50%;
+      width: 630px;
+      margin-left: -315px;
+    }
+
+    &__digit {
+      display: block;
+      position: absolute;
+      top: 25px;
+      right: 70px;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 43px;
+    }
+
+    &__icon {
+      display: block;
+      position: absolute;
+      top: 23px;
+      right: 23px;
+      width: 44px;
+    }
+
+    &__buttons {
+      position: absolute;
+      left: 50%;
+      top: calc(22% + 270px);
+      display: flex;
+      justify-content: space-between;
+      width: 630px;
+      margin-left: -315px;
+    }
+
+    &-thermostat {
+      .popup__wrapper {
+        height: 343px;
+      }
+
+      .popup__buttons {
+        top: calc(22% + 367px);
+      }
+    }
   }
 }

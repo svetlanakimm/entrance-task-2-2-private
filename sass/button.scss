@@ -1,5 +1,7 @@
 .button {
+  width: 100%;
   margin: 0;
+  margin-bottom: 15px;
   padding: 20px 0;
   min-width: 307px;
   background-color: $white;
@@ -15,5 +17,12 @@
 
   &-submit {
     background-color: $color-active;
+  }
+}
+
+@media #{$tablet-width} {
+  .button {
+    width: 307px;
+    margin-bottom: 0;
   }
 }
