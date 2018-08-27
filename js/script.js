@@ -11,23 +11,23 @@ toggleBtn.addEventListener('touchstart', toggleMenu);
 
 // крутилка
 function thermostatPopup() {
-  var wrap = document.querySelector('#thermostat');
-  var triangle = document.querySelector('.thermostat__triangle');
-  var temperature = document.querySelector('.thermostat__temperature');
+  let wrap = document.querySelector('#thermostat');
+  let triangle = document.querySelector('.thermostat__triangle');
+  let temperature = document.querySelector('.thermostat__temperature');
 
-  var coords = wrap.getBoundingClientRect();
-  var coordsLeft = coords.left;
-  var coordsTop = coords.top;
-  var coordsWidth = coords.width;
-  var coordsHeight = coords.height;
+  let coords = wrap.getBoundingClientRect();
+  let coordsLeft = coords.left;
+  let coordsTop = coords.top;
+  let coordsWidth = coords.width;
+  let coordsHeight = coords.height;
 
-  var coordsXCenter = coordsLeft + coordsWidth / 2;
-  var coordsYCenter = coordsTop + coordsHeight / 2;
+  let coordsXCenter = coordsLeft + coordsWidth / 2;
+  let coordsYCenter = coordsTop + coordsHeight / 2;
 
   function setTemperature(angle) {
-    var currT = 18;
-    var deltaT = 360 / 16;
-    for (var i = 0; i < 16; i++) {
+    let currT = 18;
+    let deltaT = 360 / 16;
+    for (let i = 0; i < 16; i++) {
       if (angle < 180) {
         if ((angle > i * deltaT) && (angle < (i + 1) * deltaT)) {
           temperature.innerHTML = currT + i + 1;
@@ -46,21 +46,20 @@ function thermostatPopup() {
   }
 
   function swipeTriangleMove(e) {
-    var clientX = e.touches[0].clientX;
-    var clientY = e.touches[0].clientY;
+    let clientX = e.touches[0].clientX;
+    let clientY = e.touches[0].clientY;
 
-    var triangleWidth = clientX - coordsXCenter;
-    var triangleHeight = clientY - coordsYCenter;
-    var hypotenuze = Math.hypot(triangleWidth, triangleHeight);
+    let triangleWidth = clientX - coordsXCenter;
+    let triangleHeight = clientY - coordsYCenter;
+    let hypotenuze = Math.hypot(triangleWidth, triangleHeight);
 
-    var radius = coordsXCenter - coordsLeft;
-    var hNew = (radius * triangleHeight) / hypotenuze;
+    let radius = coordsXCenter - coordsLeft;
+    let hNew = (radius * triangleHeight) / hypotenuze;
 
-    var angle = 180 - Math.round(Math.acos(hNew / radius) * (180 / Math.PI));
+    let angle = 180 - Math.round(Math.acos(hNew / radius) * (180 / Math.PI));
     if ((triangleWidth < 0)) {
       angle = 360 - angle;
     }
-    console.log(angle);
     wrap.style.transform = 'rotate(' + angle + 'deg)';
     setTemperature(angle);
 
@@ -95,7 +94,6 @@ let btnSubmit = document.querySelectorAll('.button-submit');
 let popups = document.querySelectorAll('.popup');
 
 function openPopup(e) {
-  console.log('openPopup');
   let deviceName = e.target.closest('.widget__task-device').querySelector('.widget-task__name').textContent;
   let deviceAction = e.target.closest('.widget__task-device').querySelector('.widget-task__action').textContent;
   let type = e.target.closest('.widget__task-device').dataset.type;
@@ -112,8 +110,6 @@ function openPopup(e) {
 }
 
 function closePopup() {
-  console.log('closePopup');
-
   for (let i = 0; i < popups.length; i++) {
     popups[i].style.display = 'none';
   }
@@ -130,8 +126,6 @@ for (let i = 0; i < btnClose.length; i++) {
 for (let i = 0; i < btnSubmit.length; i++) {
   btnSubmit[i].addEventListener('touchend', closePopup);
 }
-
-
 
 // скрытие стрелки при скролле
 let sliderVertical = document.querySelector('.widget-slider-vertical');
@@ -393,4 +387,3 @@ if (window.screen.width >= 1024 && window.screen.height >= 768) {
     btnNextHorizontal.classList.add('widget__btn-active');
   }
 }
-
